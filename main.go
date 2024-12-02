@@ -17,6 +17,13 @@ func main() {
 		"2-2": solvers.Day2Part2,
 	}
 
+	answers := map[string]int{
+		"1-1": 2742123,
+		"1-2": 21328497,
+		"2-1": 585,
+		"2-2": 626,
+	}
+
 	reader := bufio.NewReader(os.Stdin)
 
 	for {
@@ -32,8 +39,8 @@ func main() {
 		fmt.Print("Enter the part to solve (e.g., 1 or 2): ")
 		partInput := utils.ReadNewLine(reader)
 
-		solverKey := fmt.Sprintf("%s-%s", dayInput, partInput)
-		solverFunc, exists := solver[solverKey]
+		problemKey := fmt.Sprintf("%s-%s", dayInput, partInput)
+		solverFunc, exists := solver[problemKey]
 		if !exists {
 			fmt.Printf("No solver found for day %s, part %s.\n", dayInput, partInput)
 			continue
@@ -41,6 +48,16 @@ func main() {
 
 		ans := solverFunc(filePath)
 		fmt.Printf("Answer: %d\n", ans)
+
+		if trueAns, exists := answers[problemKey]; exists {
+			if trueAns == ans {
+				fmt.Println("Your solution is correct!")
+			} else {
+				fmt.Println("Your solution is incorrect. Please look at it again.")
+			}
+		} else {
+			fmt.Println("True answer is not found.")
+		}
 
 		fmt.Print("Solve another? (yes/no): ")
 		again := utils.ReadNewLine(reader)

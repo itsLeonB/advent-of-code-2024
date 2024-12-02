@@ -34,13 +34,8 @@ func Day1Part1(input string) int {
 	}
 
 	var total int
-	for i := 0; i < len(col1); i++ {
-		diff := col1[i] - col2[i]
-		if diff < 0 {
-			diff *= -1
-		}
-
-		total += diff
+	for i := 0; i < len1; i++ {
+		total += utils.Abs(col1[i] - col2[i])
 	}
 
 	return total
@@ -66,8 +61,7 @@ func Day1Part2(input string) int {
 	for i := 0; i < len(col1); i++ {
 		score := col2Map[col1[i]]
 		val := utils.Atoi(col1[i])
-
-		ans += (score * val)
+		ans += score * val
 	}
 
 	return ans

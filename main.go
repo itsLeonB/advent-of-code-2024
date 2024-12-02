@@ -13,6 +13,7 @@ func main() {
 	solver := map[string]func(input string) int{
 		"1-1": solvers.Day1Part1,
 		"1-2": solvers.Day1Part2,
+		"2-1": solvers.Day2Part1,
 	}
 
 	reader := bufio.NewReader(os.Stdin)

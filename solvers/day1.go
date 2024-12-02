@@ -3,18 +3,13 @@ package solvers
 import (
 	"bufio"
 	"log"
-	"os"
-	"strconv"
 	"strings"
 
 	"github.com/itsLeonB/advent-of-code-2024/utils"
 )
 
 func Day1Part1(input string) int {
-	file, err := os.Open(input)
-	if err != nil {
-		log.Panicf("error opening file: %s", err.Error())
-	}
+	file := utils.OpenFile(input)
 	defer file.Close()
 
 	col1 := make([]int, 0)
@@ -25,15 +20,8 @@ func Day1Part1(input string) int {
 		line := scanner.Text()
 		cols := strings.Fields(line)
 
-		val1, err := strconv.Atoi(cols[0])
-		if err != nil {
-			utils.ErrorAtoi(err)
-		}
-
-		val2, err := strconv.Atoi(cols[1])
-		if err != nil {
-			utils.ErrorAtoi(err)
-		}
+		val1 := utils.Atoi(cols[0])
+		val2 := utils.Atoi(cols[1])
 
 		col1 = utils.InsertAndSort(col1, val1)
 		col2 = utils.InsertAndSort(col2, val2)
@@ -42,7 +30,7 @@ func Day1Part1(input string) int {
 	len1 := len(col1)
 	len2 := len(col2)
 	if len1 != len2 {
-		log.Panic("two cols are not the same size")
+		log.Fatal("two cols are not the same size")
 	}
 
 	var total int
@@ -59,10 +47,7 @@ func Day1Part1(input string) int {
 }
 
 func Day1Part2(input string) int {
-	file, err := os.Open(input)
-	if err != nil {
-		log.Panicf("error opening file: %s", err.Error())
-	}
+	file := utils.OpenFile(input)
 	defer file.Close()
 
 	col1 := make([]string, 0)
@@ -80,10 +65,7 @@ func Day1Part2(input string) int {
 	var ans int
 	for i := 0; i < len(col1); i++ {
 		score := col2Map[col1[i]]
-		val, err := strconv.Atoi(col1[i])
-		if err != nil {
-			utils.ErrorAtoi(err)
-		}
+		val := utils.Atoi(col1[i])
 
 		ans += (score * val)
 	}

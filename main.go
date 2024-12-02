@@ -12,6 +12,7 @@ import (
 func main() {
 	solver := map[string]func(input string) int{
 		"1-1": solvers.Day1Part1,
+		"1-2": solvers.Day1Part2,
 	}
 
 	reader := bufio.NewReader(os.Stdin)
@@ -20,7 +21,7 @@ func main() {
 		fmt.Print("Enter the day to solve: ")
 		dayInput, err := reader.ReadString('\n')
 		if err != nil {
-			utils.InputError(err)
+			utils.ErrorInputParse(err)
 		}
 		dayInput = utils.CleanInput(dayInput)
 
@@ -33,7 +34,7 @@ func main() {
 		fmt.Print("Enter the part to solve (e.g., 1 or 2): ")
 		partInput, err := reader.ReadString('\n')
 		if err != nil {
-			utils.InputError(err)
+			utils.ErrorInputParse(err)
 		}
 		partInput = utils.CleanInput(partInput)
 
@@ -50,7 +51,7 @@ func main() {
 		fmt.Print("Solve another? (yes/no): ")
 		again, err := reader.ReadString('\n')
 		if err != nil {
-			utils.InputError(err)
+			utils.ErrorInputParse(err)
 		}
 
 		again = utils.CleanInput(again)

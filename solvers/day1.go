@@ -27,12 +27,12 @@ func Day1Part1(input string) int {
 
 		val1, err := strconv.Atoi(cols[0])
 		if err != nil {
-			log.Panicf("error converting to int: %s", err.Error())
+			utils.ErrorAtoi(err)
 		}
 
 		val2, err := strconv.Atoi(cols[1])
 		if err != nil {
-			log.Panicf("error converting to int: %s", err.Error())
+			utils.ErrorAtoi(err)
 		}
 
 		col1 = utils.InsertAndSort(col1, val1)
@@ -56,4 +56,37 @@ func Day1Part1(input string) int {
 	}
 
 	return total
+}
+
+func Day1Part2(input string) int {
+	file, err := os.Open(input)
+	if err != nil {
+		log.Panicf("error opening file: %s", err.Error())
+	}
+	defer file.Close()
+
+	col1 := make([]string, 0)
+	col2Map := make(map[string]int)
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		cols := strings.Fields(line)
+
+		col1 = append(col1, cols[0])
+		col2Map[cols[1]]++
+	}
+
+	var ans int
+	for i := 0; i < len(col1); i++ {
+		score := col2Map[col1[i]]
+		val, err := strconv.Atoi(col1[i])
+		if err != nil {
+			utils.ErrorAtoi(err)
+		}
+
+		ans += (score * val)
+	}
+
+	return ans
 }

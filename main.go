@@ -14,6 +14,7 @@ func main() {
 		"1-1": solvers.Day1Part1,
 		"1-2": solvers.Day1Part2,
 		"2-1": solvers.Day2Part1,
+		"2-2": solvers.Day2Part2,
 	}
 
 	reader := bufio.NewReader(os.Stdin)

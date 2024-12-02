@@ -18,7 +18,7 @@ func Day2Part1(input string) int {
 		line := scanner.Text()
 		vals := strings.Fields(line)
 
-		if isSafeSequence(vals) {
+		if isSafeSequence(vals, false) {
 			safeCount++
 		}
 	}
@@ -26,7 +26,26 @@ func Day2Part1(input string) int {
 	return safeCount
 }
 
-func isSafeSequence(vals []string) bool {
+func Day2Part2(input string) int {
+	file := utils.OpenFile(input)
+	defer file.Close()
+
+	var safeCount int
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		vals := strings.Fields(line)
+
+		if isSafeSequence(vals, true) {
+			safeCount++
+		}
+	}
+
+	return safeCount
+}
+
+func isSafeSequence(vals []string, tolerateOnce bool) bool {
 	num1 := utils.Atoi(vals[1])
 	num2 := utils.Atoi(vals[0])
 	isIncreasing := num1 > num2
@@ -37,7 +56,11 @@ func isSafeSequence(vals []string) bool {
 		diff := num1 - num2
 
 		if (isIncreasing && diff <= 0) || (!isIncreasing && diff >= 0) || utils.Abs(diff) < 1 || utils.Abs(diff) > 3 {
-			return false
+			if !tolerateOnce {
+				return false
+			}
+
+			tolerateOnce = false
 		}
 	}
 

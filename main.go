@@ -59,10 +59,10 @@ func main() {
 			fmt.Println("True answer is not found.")
 		}
 
-		fmt.Print("Solve another? (yes/no): ")
+		fmt.Print("Solve another? (y/n): ")
 		again := utils.ReadNewLine(reader)
 
-		if again != "yes" {
+		if again != "y" {
 			fmt.Println("Exiting...")
 			break
 		}

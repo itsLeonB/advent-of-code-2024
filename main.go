@@ -21,11 +21,7 @@ func main() {
 
 	for {
 		fmt.Print("Enter the day to solve: ")
-		dayInput, err := reader.ReadString('\n')
-		if err != nil {
-			utils.ErrorInputParse(err)
-		}
-		dayInput = utils.CleanInput(dayInput)
+		dayInput := utils.ReadNewLine(reader)
 
 		filePath := fmt.Sprintf("inputs/day%s.txt", dayInput)
 		if _, err := os.Stat(filePath); os.IsNotExist(err) {
@@ -34,11 +30,7 @@ func main() {
 		}
 
 		fmt.Print("Enter the part to solve (e.g., 1 or 2): ")
-		partInput, err := reader.ReadString('\n')
-		if err != nil {
-			utils.ErrorInputParse(err)
-		}
-		partInput = utils.CleanInput(partInput)
+		partInput := utils.ReadNewLine(reader)
 
 		solverKey := fmt.Sprintf("%s-%s", dayInput, partInput)
 		solverFunc, exists := solver[solverKey]
@@ -51,12 +43,8 @@ func main() {
 		fmt.Printf("Answer: %d\n", ans)
 
 		fmt.Print("Solve another? (yes/no): ")
-		again, err := reader.ReadString('\n')
-		if err != nil {
-			utils.ErrorInputParse(err)
-		}
+		again := utils.ReadNewLine(reader)
 
-		again = utils.CleanInput(again)
 		if again != "yes" {
 			fmt.Println("Exiting...")
 			break

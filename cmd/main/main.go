@@ -16,6 +16,7 @@ func main() {
 		"2-1": solvers.Day2Part1,
 		"2-2": solvers.Day2Part2,
 		"3-1": solvers.Day3Part1,
+		"3-2": solvers.Day3Part2,
 	}
 
 	answers := map[string]int{
@@ -24,6 +25,7 @@ func main() {
 		"2-1": 585,
 		"2-2": 626,
 		"3-1": 173529487,
+		"3-2": 99532691,
 	}
 
 	reader := bufio.NewReader(os.Stdin)

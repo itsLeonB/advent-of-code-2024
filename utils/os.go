@@ -13,3 +13,12 @@ func OpenFile(input string) *os.File {
 
 	return file
 }
+
+func ReadFile(input string) []byte {
+	bytes, err := os.ReadFile(input)
+	if err != nil {
+		log.Fatalf("error reading file: %s", err.Error())
+	}
+
+	return bytes
+}

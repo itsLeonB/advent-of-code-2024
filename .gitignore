@@ -1,2 +1,4 @@
-cmd/experiment
-experiments
+/cmd/experiment
+/experiments
+/tmp
+/bin

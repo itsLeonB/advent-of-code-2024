@@ -22,6 +22,8 @@ func main() {
 		"5-1": solvers.Day5Part1,
 		"5-2": solvers.Day5Part2,
 		"6-1": solvers.Day6Part1,
+		"6-2": solvers.Day6Part2,
+		"7-1": solvers.Day7Part1,
 	}
 
 	answers := map[string]int{
